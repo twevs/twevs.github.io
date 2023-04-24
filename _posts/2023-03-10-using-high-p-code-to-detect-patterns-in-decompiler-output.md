@@ -3,12 +3,12 @@
 As part of the [_Metal Gear Solid_ matching decompilation](https://github.com/FoxdieTeam/mgs_reversing) effort (ie, reverse-engineering the game's binaries to create C code which compiles to byte-for-byte identical output), I wanted to create a Ghidra script that would detect usage by the original developers of some of the C macros provided by the PlayStation SDK, PsyQ. Was this possible? If so, how?
 
 ## Table of contents
-- [Background: the PlayStation SDK](#background)
+- [Background: the PlayStation SDK's C macros](#background)
 - [The problem: hunting for macro usage](#problem)
 - [The solution: high P-code](#solution)
 - [A plugin to make high P-code more easily accessible](#plugin)
 
-## Background: the SDK's C macros <a name="background"></a>
+## Background: the PlayStation SDK's C macros <a name="background"></a>
 
 The transition to the fifth generation of video game consoles in the 1990s (3DO, Saturn, PlayStation, N64 ...) gave developers revolutionary new capabilities in terms of real-time 3D graphics, which simultaneously brought with them a new level of complexity that the console manufacturers sought to alleviate by providing C libraries for the first time. To developers working with the PlayStation, Sony offered the PsyQ SDK, with an API that they could use to work with the Geometry Transformation Engine (coprocessor for high-speed geometry operations), memory cards, the CD-ROM drive, and other aspects of the system.
 
@@ -90,7 +90,7 @@ can we not simply retrieve the value held in `rx` at that point in function exec
 ```asm
 li rx,0x20
 ```
-can precede the assignment by an arbitary number of instructions, which might themselves use the same register for other purposes in branches. We would essentially have to write a script that works through the function's data and control flow just to have the register value at that point, which almost sounds like running [P-code emulation](https://medium.com/@cetfor/emulating-ghidras-pcode-why-how-dd736d22dfb) on the whole program. But the decompiler has already done the job of working through the function to resolve constant assignments; is there really no way to access its internal representation of that information programatically?
+can precede the assignment by an arbitary number of instructions, which might themselves use the same register for other purposes in branches. We would essentially have to write a script that works through the function's data and control flow just to have the register value at that point, which almost sounds like running [P-code emulation](https://medium.com/@cetfor/emulating-ghidras-pcode-why-how-dd736d22dfb) on the whole program. But the decompiler has already done the job of working through the function to resolve constant assignments; is there really no way to access its internal representation of that information programmatically?
 
 ## The solution: high P-code <a name="solution"></a>
 
