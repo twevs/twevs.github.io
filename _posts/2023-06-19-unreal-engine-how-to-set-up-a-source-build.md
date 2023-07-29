@@ -10,7 +10,7 @@ Skip to step 5 if you have already cloned the engine's source code from Epic's G
 
 3. Install [Git for Windows](https://gitforwindows.org/).
 
-4. Open the folder into which you wish to install the engine in Windows Explorer (it is **highly** recommended that it should be on an SSD, not a hard drive), click on the address bar so as to select the path, replace it with `cmd`, then press Enter; a command-line window should appear, into which you then enter `git clone --filter=blob:none EpicGames/UnrealEngine` to clone the repository.
+4. Open the folder into which you wish to install the engine in Windows Explorer (it is **highly** recommended that it should be on an SSD, not a hard drive), click on the address bar so as to select the path, replace it with `cmd`, then press Enter; a command-line window should appear, into which you then enter `git clone --filter=blob:none https://github.com/EpicGames/UnrealEngine.git` to clone the repository.
 
 5. Once the repository is cloned, enter `cd UnrealEngine` and then the following command, removing exclusions of platforms that you intend to target; for example, if you intend to build for Android, remove `-exclude=Android`. Note that if you do not have a Launcher build from which to copy over the GoogleTest library files, you will probably also need to remove `-exclude=GoogleTest`. You can always rerun this script later with fewer exclusions if you need to.
 
